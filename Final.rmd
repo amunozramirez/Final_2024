@@ -24,6 +24,8 @@ mutate(across(where(is.character), as.factor))
 
 A new  preventative vaccine (covid921) is under test in clinical trials. Given the nature of this vaccine it is suspected that the drug may exhibit different effectiveness across the variety of subpopulations tracked. Consider population subgroups by gender( guys and gals), drug use, and sexual orientation. Write a complete report that separately considers this drug for each subgroup and your recommendations as to whether people in the subgroup should take the vaccine. Structure your report in four sections each devoted to one of the four subgroups, use null and alternative hypothesis statements and correct statistical verbage when referencing p-values in conclusions.
 
+
+
 ## Males
 
 ## Methods 
@@ -80,7 +82,10 @@ This data shows that the Chi- Square P-Value is 2.2e-16 and the fisher exact tes
 
 The bar chart shows that you are less likely to contract covid91 if you did recive the vaccine. The numerical data shows the results in percentages. Within the placebo group 73.80% of individuals got infected with covid91. While in the vaccine group 26.20% contracted covid-91. This indicates the receive the vaccine as a male significantly reduces the risk of contracted covid91. The inferential data including the fisher exact test shows that the P-Value is 2.2e-16 which is significantly lower than 0.05 which means we reject the null hypothesis. All in these examples and stimulation show that is a male you are as far less likely to contract covid-91 upon receive the vaccine.  
 
+
+
 ## Females
+
 
 ## Methods 
 
@@ -141,8 +146,56 @@ The bar chart shows that you are less likely to contract Covid 91 if you did rec
 
 ## LGBTQ
 
+##Methods 
 
+Question: Is the Covid 91 vaccine effective in preventing Covid91 in members of the LGBTQ community. 
 
+$H_0$: The vaccine is not effective in preventing covid91 in members of the LGBTQ community. 
+
+$H_A$: The vaccine is effective in preventing covid 91 in members of the LGBTQ community. 
+
+infected~LGBTQ(gay)
+categorical~categorical
+
+We'll be using Cat~Cat 
+
+## Graphical Results 
+
+```{r}
+LGBTQ <- FinalDat[FinalDat$LGBTQ=='gay',]
+```
+
+```{r}
+barchartGC(~infected + treatment,data=LGBTQ)
+barchartGC(~infected + treatment,data=LGBTQ, type="percent")
+```
+
+This bar chart shows that the members of the LGBTQ community are less likely to contract Covid91 after receiving the vaccine.  
+
+## Numerical Results 
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=LGBTQ)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical data shows the results in percentages. Within the placebo group
+80.00% of individuals got infected with covid91. While in the vaccine group 20.00% contracted covid91. This indicates that receive the vaccine as a LGBTQ community member significantly reduces the risk of contracted covid 91.  
+
+## Inferential Results 
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+The Chi-Square test shows that the P-Value is 2.266e-06 ad data the Fisher exact test shows that the P-Value is 7.269e-07 which is significantly lower than 0.05 which means we reject the null hypothesis.  
+
+## Conclusion 
+
+The bar chart shows that you are less likely to contract covid91 if you did receive the vaccine. The numerical data shows the results in percentages. Within the placebo group 80.00% of individuals got infected with covid91. While in the vaccine group 20.00% contracted covid 91. This indicates that receiving the vaccine as an LGBTQ member significantly reduces the risk of contracting covid 91. The inferential data including the fisher exact test shows that the p-value is 7.269e-07 which is significantly lower than 0.05 which means we reject the null hypothesis. In summation these examples and simulations show that as a member of the LGBTQ community you are far less likely to contract covid 91 if you receive the vaccine. 
 
 
 ## Druggies
