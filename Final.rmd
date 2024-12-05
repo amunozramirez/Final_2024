@@ -200,6 +200,57 @@ The bar chart shows that you are less likely to contract covid91 if you did rece
 
 ## Druggies
 
+Question: Is the vaccine effective in preventing covid 91 in drug users?
+
+$H_0$: The vaccine is not effective in preventing covid91 in a drug use. 
+
+$H_A$: The vaccine is effective in preventing covid 91 in drug users. 
+
+infected~DrugUser(yes)
+categorical~categorical
+
+We'll be using Cat~Cat
+
+## Graphical Results 
+
+```{r}
+DrugUser <- FinalDat[FinalDat$DrugUser=='yes',]
+```
+
+```{r}
+barchartGC(~infected + treatment,data=DrugUser)
+barchartGC(~infected + treatment,data=DrugUser, type="percent")
+
+```
+
+According to the bar chart you are more likely to get covid91 if you receive the vaccine as a drug user. 
+
+
+## Numerical Results 
+
+```{r}
+table1 <- xtabs(~infected + treatment, data=DrugUser)
+rowPerc(table1)
+colPerc(table1)
+```
+
+The numerical data shows the results in percentages. Within the placebo group 8.33% of individuals got infected with covid 91. while in the vaccine group 91.67% contracted covid 91. This indicates that receiving the vaccine as a drug user significantly increases the risk of contracted covid 91.  
+
+## Inferential Results 
+
+```{r}
+chisq.test(table1)
+chisqtestGC(table1)
+fisher.test(table1)
+```
+
+
+The Chi- Square test shows a P- Value of 1.414e-10 data and the Fisher exact test shows that the P-Value is 3.261e-12 which is significantly lower than 0.05 which means we reject the null hypothesis.   
+
+
+## Conclusions 
+
+The bar chart shows that you are far more likely to contract Covid91 if you did recive the vaccine as a drug user. The numerical data shows the results in percentages. Within the placebo group 8.33% of the individuals got infected with covid 91. While in the vaccine group 91.67% contracted Covid 91. This indicates that receiving the vaccine as a drug user significantly increases the risk of the risk of contracted covid 91. The inferential data shows Chi-Squared P-Value of 1.414e-10, and the data includes a Fisher exact test showing that the P-Value is 3.261e-12 which is significantly lower than 0.5 which means we reject the null hypothesis. In summation these examples ans simulations show that as a drug user you are far more likely to contract covid 91 if you receive the vaccine. 
 
 # Overall Results and Conclusions
 
